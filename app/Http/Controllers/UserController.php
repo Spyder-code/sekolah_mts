@@ -129,7 +129,7 @@ class UserController extends Controller
 
     public function destroy(User $user)
     {
-        Storage::disk('public')->delete($user['picture']);
+        // Storage::disk('public')->delete($user['picture']);
         $user->delete();
         Session::flash('success', 'Berhasil Menghapus User');
         return redirect()->back();

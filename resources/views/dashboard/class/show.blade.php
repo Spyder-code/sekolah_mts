@@ -30,7 +30,7 @@
                                         <td>{{ $item->name }}</td>
                                         <td>{{ $item->lecturer->name }}</td>
                                         <td class="d-flex">
-                                            <a href="{{ route('classroom.edit', $item['id']) }}" class="btn btn-primary btn-xs mr-2"><i class="icon icon-pencil"></i>Ubah</a>
+                                            <a href="{{ route('classroom.edit', $item) }}" class="btn btn-primary btn-xs mr-2"><i class="icon icon-pencil"></i>Ubah</a>
                                             <form action="{{ route('classroom.destroy',['classroom'=>$item['id']]) }}" method="post">
                                                 @csrf
                                                 @method('DELETE')

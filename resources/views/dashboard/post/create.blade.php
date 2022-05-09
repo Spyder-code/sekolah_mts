@@ -15,9 +15,7 @@
    <link
       href="https://fonts.googleapis.com/css2?family=Buenard:wght@400;700&family=Ubuntu:ital,wght@0,400;0,500;0,700;1,400;1,500&display=swap"
       rel="stylesheet">
-   <script defer src="https://use.fontawesome.com/releases/v5.7.2/js/all.js"
-      integrity="sha384-0pzryjIRos8mFBWMzSSZApWtPl/5++eIfzYmTgBBmXYdhvxPc+XcFEk+zJwDgWbP" crossorigin="anonymous">
-   </script>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
    <link rel="stylesheet" href="{{ asset('js/writty/writty.css') }}">
 
@@ -124,7 +122,7 @@
 
    <script src="{{ asset('js/writty/writty.js') }}"></script>
    <script src="{{ asset('js/writty/writtyautosave.js') }}"></script>
-   <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
       integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 

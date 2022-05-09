@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Post;
-use App\PostCategory;
+use App\Models\Post;
+use App\Models\PostCategory;
 use DOMDocument;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
@@ -34,19 +34,19 @@ class PostController extends Controller
 
       $validate['content'] = 'konten baru';
       $post = Post::create($validate);
-      
+
       $src = $this->getImage($request->content);
       if($src) {
          $arrImageName = $this->imageConverter($src, $post->id);
          $newContent = $this->cleanContent($request->content, $arrImageName);
-         $validate['image'] = Storage::url('post/'.$arrImageName[0]); 
+         $validate['image'] = Storage::url('post/'.$arrImageName[0]);
          $validate['content'] = $newContent;
          $post->update($validate);
       } else {
          $validate['content'] = $request->content;
          $post->update($validate);
       }
-      
+
       return redirect()->route('post.index')->with('success', 'Post berhasil dibuat');
    }
 
@@ -67,7 +67,7 @@ class PostController extends Controller
       }
    }
 
-   private function imageConverter($src, $id) 
+   private function imageConverter($src, $id)
    {
       $fileName = $id.".jpg"; // diganti id post (ex: 1.jpg)
       $arrImageName = array();
@@ -78,16 +78,16 @@ class PostController extends Controller
       return $arrImageName;
    }
 
-   private function base64_to_jpg($base64_string, $output_file) 
+   private function base64_to_jpg($base64_string, $output_file)
    {
-      $ifp = fopen(storage_path('app/post/'.$output_file), 'wb'); 
+      $ifp = fopen(storage_path('app\post'.$output_file), 'wb');
       $data = explode(',', $base64_string);
-      fwrite($ifp, base64_decode($data[1]));  
-      fclose($ifp); 
-      return $output_file; 
+      fwrite($ifp, base64_decode($data[1]));
+      fclose($ifp);
+      return $output_file;
    }
 
-   private function jpg_to_base64($image, $content) 
+   private function jpg_to_base64($image, $content)
    {
       $imgName = explode('/storage/post/', $image);
       $base64 = 'data:image/jpg;base64,'.base64_encode(Storage::get('post/'.$imgName[1]));
@@ -103,7 +103,7 @@ class PostController extends Controller
       return $doc->saveHTML();
    }
 
-   private function cleanContent($content, $arrImageName) 
+   private function cleanContent($content, $arrImageName)
    {
       $doc = new DOMDocument();
       $doc->loadHTML($content, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
@@ -120,12 +120,12 @@ class PostController extends Controller
    public function edit(Post $post)
    {
       $category = PostCategory::all();
-      
+
       if($post->image) {
          $content = $this->jpg_to_base64($post->image, $post->content);
          $post->content = $content;
-      } 
-      
+      }
+
       return view('dashboard.post.edit', compact('post', 'category'));
    }
 
@@ -140,15 +140,15 @@ class PostController extends Controller
       if($src) {
          $arrImageName = $this->imageConverter($src, $post->id);
          $newContent = $this->cleanContent($request->content, $arrImageName);
-         $validate['image'] = Storage::url('post/'.$arrImageName[0]); 
+         $validate['image'] = Storage::url('post/'.$arrImageName[0]);
          $validate['content'] = $newContent;
       } else {
          $validate['content'] = $request->content;
       }
-      
+
       $post->update($validated);
       return redirect()->route('post.index')->with('success', 'Post berhasil diupdate');;
-      
+
    }
 
    public function destroy(Post $post)

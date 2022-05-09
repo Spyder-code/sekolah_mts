@@ -1,6 +1,6 @@
 <?php
 
-use App\Post;
+use App\Models\Post as ModelsPost;
 use Illuminate\Database\Seeder;
 
 class PostSeeder extends Seeder
@@ -12,7 +12,7 @@ class PostSeeder extends Seeder
     */
    public function run()
    {
-      Post::create([
+      ModelsPost::create([
          'post_category_id' => 4,
          'title' => 'Informasi PPDB',
          'content' => '<p>Informasi PPDB</p>',

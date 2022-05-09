@@ -1,6 +1,6 @@
 <?php
 
-use App\PostCategory;
+use App\Models\PostCategory;
 use Illuminate\Database\Seeder;
 
 class PostCategoriesSeeder extends Seeder

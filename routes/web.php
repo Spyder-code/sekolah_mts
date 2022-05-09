@@ -13,11 +13,17 @@
 
 use App\Http\Controllers\Api\QuizHistoryController;
 use App\Http\Controllers\ClassroomController;
+use App\Http\Controllers\CourseController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\FileController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\QuizController;
 use App\Http\Controllers\IntermezzoController;
+use App\Http\Controllers\PageController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RoomController;
+use App\Http\Controllers\StudentController;
 use App\Http\Controllers\StudentTakeQuizController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
@@ -47,8 +53,9 @@ Route::group(['middleware' => ['auth']], function () {
    Route::post('classroom/quiz/submit/{quiz}',[QuizController::class,'submitQuiz'])->name('quiz.submit');
 
    Route::get('classroom', [ClassroomController::class,'index'])->name('classroom.index');
+   Route::get('classroom/mapel/{classroom}/edit', [ClassroomController::class,'edit'])->name('classroom.edit');
    Route::get('classroom/create/room/{room}', [ClassroomController::class,'create'])->name('classroom.create');
-   Route::resource('classroom', ClassroomController::class)->except(['index','create']);
+   Route::resource('classroom', ClassroomController::class)->except(['index','create','edit']);
    Route::get('classrooms/students/{classroom}', [ClassroomController::class,'showStudents'])->name('classroom.students');
    Route::get('classroom/quiz_result/{classroom}', [ClassroomController::class,'showQuizResult'])->name('classroom.quiz.result');
    Route::delete('classroom/students/destroy/{classroomId}/{studentId}', [ClassroomController::class,'deleteStudent'])->name('classroom.student.destroy');

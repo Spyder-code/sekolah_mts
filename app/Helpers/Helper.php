@@ -1,6 +1,9 @@
 <?php
 
 /* Active Route Sidebar */
+
+use Illuminate\Support\Facades\Route;
+
 function setActive($uri,$output = "active")
 {
     if( is_array($uri) ) {
