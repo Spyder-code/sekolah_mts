@@ -49,6 +49,13 @@
             <a href="{{ route('classroom.index') }}"><i
                   class="icon icon-room_service s-18 text-purple"></i>Classroom</a>
          </li>
+         @can('siswa')
+            <li
+            class="{{ setActive(['rapor.index', 'rapor.student', 'rapor.create','rapor.edit', 'rapor.show']) }}">
+            <a href="{{ route('rapor.index') }}"><i
+                class="icon icon-room_service s-18 text-purple"></i>E-Rapor</a>
+        </li>
+         @endcan
          @endif
          @can('admin')
          <li class="header">

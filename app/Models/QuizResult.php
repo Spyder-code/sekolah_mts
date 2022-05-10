@@ -21,6 +21,11 @@ class QuizResult extends Model
         return $this->belongsTo(Quiz::class);
     }
 
+    public function quiz_tugas()
+    {
+        return $this->quiz()->where('category', 'TUGAS');
+    }
+
     public function student()
     {
         return $this->belongsTo(User::class,'user_id');

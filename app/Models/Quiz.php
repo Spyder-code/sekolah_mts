@@ -24,6 +24,11 @@ class Quiz extends Model
         return $this->hasMany(QuizResult::class);
     }
 
+    public function result_one()
+    {
+        return $this->hasOne(QuizResult::class,'quiz_id');
+    }
+
     public function classroom()
     {
         return $this->belongsTo(Classroom::class);

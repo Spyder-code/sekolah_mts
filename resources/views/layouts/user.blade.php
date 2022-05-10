@@ -5,7 +5,7 @@
    <meta charset="utf-8">
    <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-   <title>SMAN 1 Kepanjen</title>
+   <title>MTs. Wahid Hasyim </title>
    <meta content="" name="description">
    <meta content="" name="keywords">
 
@@ -39,7 +39,7 @@
          <div class="contact-info d-flex align-items-center">
             <i class="bi bi-envelope d-flex align-items-center"><a
                   href="mailto:contact@example.com">contact@example.com</a></i>
-            <i class="bi bi-phone d-flex align-items-center ms-4"><span>(0341) 395122</span></i>
+            <i class="bi bi-phone d-flex align-items-center ms-4"><span>(0341) 9638567</span></i>
          </div>
 
          <div class="cta d-none d-md-flex align-items-center">
@@ -53,7 +53,7 @@
       <div class="container d-flex align-items-center justify-content-between">
 
          <div class="logo">
-            <h1><a href="{{ route('user.index') }}">SMAN 1 KEPANJEN</a></h1>
+            <h1><a href="{{ route('user.index') }}">MTs. Wahid Hasyim </a></h1>
             <!-- Uncomment below if you prefer to use an image logo -->
             <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
          </div>
@@ -112,11 +112,11 @@
                <div class="col-lg-3 col-md-6 footer-contact">
                   <h3>SMAN 1 KEPANJEN</h3>
                   <p>
-                     Jl. Ahmad Yani No.48 <br>
-                     Ardirejo, Kec. Kepanjen<br>
-                     Malang, Jawa Timur 65163 <br><br>
-                     <strong>Phone:</strong> (0341) 395122<br>
-                     <strong>Email:</strong> info@example.com<br>
+                        Jl. Karyawiguna, Jetis,<br>
+                        Mulyoagung, Kec. Dau,<br>
+                        Kota Malang, Jawa Timur 65151 <br><br>
+                     <strong>Phone:</strong> (0341) 9638567<br>
+                     {{-- <strong>Email:</strong> info@example.com<br> --}}
                   </p>
                </div>
 
@@ -142,7 +142,7 @@
 
                <div class="col-lg-4 col-md-6 footer-newsletter">
                   <iframe class="img-fluid"
-                     src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15799.090111900607!2d112.5723506!3d-8.1246271!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x5b7ce72d64e096f8!2sSMAN%201%20KEPANJEN!5e0!3m2!1sid!2sid!4v1638397857601!5m2!1sid!2sid"
+                     src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15807.07094887575!2d112.5910759!3d-7.9193126!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xd5ad823d72613843!2sMTS%20Wahid%20Hasyim%2001!5e0!3m2!1sid!2sid!4v1652168136774!5m2!1sid!2sid"
                      style="border:0;" width="400" height="500" allowfullscreen="" loading="lazy"></iframe>
                </div>
 

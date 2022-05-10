@@ -22,6 +22,7 @@ use App\Http\Controllers\QuizController;
 use App\Http\Controllers\IntermezzoController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\RaporController;
 use App\Http\Controllers\RoomController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\StudentTakeQuizController;
@@ -74,6 +75,7 @@ Route::group(['middleware' => ['auth']], function () {
 
    Route::group(['middleware' => ['can:siswa']], function () {
        Route::get('history_quiz', QuizHistoryController::class)->name('quiz.history');
+       Route::get('raport', [RaporController::class,'index'])->name('rapor.index');
    });
 
    Route::group(['middleware' => ['can:admin']], function () {

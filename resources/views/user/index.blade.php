@@ -3,7 +3,7 @@
 <!-- ======= Hero Section ======= -->
 <section id="hero" class="d-flex flex-column justify-content-center align-items-center">
    <div class="container" data-aos="fade-in">
-      <h1>Welcome to SMAN 1 Kepanjen</h1>
+      <h1>Welcome to MTs. Wahid Hasyim </h1>
       <h2>Mantap dalam Imtaq, Unggul dalam Prestasi, dan Berbudaya Lingkungan</h2>
       <div class="d-flex align-items-center">
          <i class="bx bxs-right-arrow-alt get-started-icon"></i>
@@ -21,12 +21,8 @@
          <div class="row">
             <div class="col-xl-4 col-lg-5" data-aos="fade-up">
                <div class="content">
-                  <h3>Tujuan</h3>
                   <p>
-                     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
-                     et dolore magna aliqua.
-                     Asperiores dolores sed et. Tenetur quia eos. Autem tempore quibusdam vel necessitatibus optio ad
-                     corporis.
+                    Dengan diluncurkannya website MTs. Wahid Hasyim 01 Dau ini merupakan bentuk kepedulian kami terhadap perkembangan kemajuan zaman dibidang IT. Melalui website ini kami memberikan kesempatan seluas-luasnya kepada masyarakat luas baik itu siswa, alumni, maupun  masyarakat umum untuk mengenal madrsah kami MTs. Wahid Hasyim Dau lebih dekat.
                   </p>
                   <div class="text-center">
                      <a href="#" class="more-btn">Learn More <i class="bx bx-chevron-right"></i></a>
@@ -39,22 +35,24 @@
                      <div class="col-xl-4 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100">
                         <div class="icon-box mt-4 mt-xl-0">
                            <i class="bx bx-receipt"></i>
-                           <h4>Unggul dalam juara</h4>
-                           <p>Consequuntur sunt aut quasi enim aliquam quae harum pariatur laboris nisi ut aliquip</p>
+                           <h4>Visi</h4>
+                           <p>Mewujudkan Madrasah yang unggul dalam IMTAQ dan IPTAQ yang berlandaskan Islam Aswaja, beraklakul karimah, dan berwawasan kebangsaan</p>
                         </div>
                      </div>
                      <div class="col-xl-4 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="200">
                         <div class="icon-box mt-4 mt-xl-0">
                            <i class="bx bx-cube-alt"></i>
-                           <h4>Unggul dalam akademisi</h4>
-                           <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt</p>
+                           <h4>Misi</h4>
+                           <p>Menciptakan suasana yang konduktif untuk keefektifan seluruh kegiatan sekolah/madrasah, Membekali siswa-siswi dengan IPTAQ dan IMTAQ
+                        </p>
                         </div>
                      </div>
                      <div class="col-xl-4 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="300">
                         <div class="icon-box mt-4 mt-xl-0">
                            <i class="bx bx-images"></i>
-                           <h4>Mencetak lulusan terbaik</h4>
-                           <p>Aut suscipit aut cum nemo deleniti aut omnis. Doloribus ut maiores omnis facere</p>
+                           <h4>Tujuan</h4>
+                           <p>Mencetak lulusan yang berprestasi akademik maupun non akademik dengan dilandasi iman dan taqwa kepa Alloh SWT yang berlandaskan Aswaja, berakhlakul karimah, dan berwawasan kebangsaan
+                        </p>
                         </div>
                      </div>
                   </div>
@@ -78,30 +76,26 @@
             <div
                class="col-xl-7 col-lg-6 icon-boxes d-flex flex-column align-items-stretch justify-content-center py-5 px-lg-5">
                <h4 data-aos="fade-up">Tentang Kami</h4>
-               <h3 data-aos="fade-up">SMAN 1 KEPANJEN </h3>
-               <p data-aos="fade-up">Esse voluptas cumque vel exercitationem. Reiciendis est hic accusamus. Non ipsam et
-                  sed minima temporibus laudantium. Soluta voluptate sed facere corporis dolores excepturi. Libero
-                  laboriosam sint et id nulla tenetur. Suscipit aut voluptate.</p>
+               <h3 data-aos="fade-up">MTs. Wahid Hasyim </h3>
+               <p data-aos="fade-up">Alhamdulillahirobbil alamin, segala puji hanya untuk Allah SWT pemilik segala Maha yang telah melimpahkan nikmat dan kasih sayangn-Nya baik itu nikmat iman, islam, kesempatan, dan kesehatan.</p>
+               <p data-aos="fade-up">Mts. Wahid Hasyim memberikan pembelajaran yang sangat kompeten hingga selalu mencetak siswa/siswa:</p>
 
                <div class="icon-box" data-aos="fade-up">
                   <div class="icon"><i class="bx bx-fingerprint"></i></div>
                   <h4 class="title"><a href="">Mantap dalam Imtaq</a></h4>
-                  <p class="description">Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi
-                     sint occaecati cupiditate non provident</p>
+                  <p class="description">Mencetak pribadi seorang muslim/muslimah yang unggul dalam nilai Islami</p>
                </div>
 
                <div class="icon-box" data-aos="fade-up" data-aos-delay="100">
                   <div class="icon"><i class="bx bx-gift"></i></div>
                   <h4 class="title"><a href="">Unggul dalam Prestasi</a></h4>
-                  <p class="description">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis
-                     praesentium voluptatum deleniti atque</p>
+                  <p class="description">Mencetak siswa/siswi yang unggul dalam akademis yang mampu bersaing di tingkat nasional</p>
                </div>
 
                <div class="icon-box" data-aos="fade-up" data-aos-delay="200">
                   <div class="icon"><i class="bx bx-atom"></i></div>
                   <h4 class="title"><a href="">Berbudaya Lingkungan</a></h4>
-                  <p class="description">Explicabo est voluptatum asperiores consequatur magnam. Et veritatis odit. Sunt
-                     aut deserunt minus aut eligendi omnis</p>
+                  <p class="description">Mencetak pribadi yang baik mengerti keadaan dan mampu mengedepankan agama dan negara</p>
                </div>
 
             </div>
@@ -393,7 +387,7 @@
                <div class="info-box">
                   <i class="bx bx-map"></i>
                   <h3>Alamat</h3>
-                  <p>Jl. Ahmad Yani No.48, Ardirejo, Kec. Kepanjen, Malang, Jawa Timur 65163</p>
+                  <p>Jl. Karyawiguna, Jetis, Mulyoagung, Kec. Dau, Kota Malang, Jawa Timur 65151</p>
                </div>
             </div>
 
@@ -408,7 +402,7 @@
                <div class="info-box">
                   <i class="bx bx-phone-call"></i>
                   <h3>Telephone</h3>
-                  <p>(0341) 395122</p>
+                  <p>(0341) 9638567</p>
                </div>
             </div>
          </div>

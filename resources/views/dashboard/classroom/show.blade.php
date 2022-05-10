@@ -323,19 +323,6 @@
     </script>
 
     <script>
-        $.ajax({
-            url: '{{ route('resource.intermezzo') }}',
-            success: function (res) {
-                $('#intermezzo').text(res.data.text);
-                $('#year').text(`(${res.data.year})`);
-            },
-            error: function (res) {
-                console.log(res);
-            }
-        })
-    </script>
-
-    <script>
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
