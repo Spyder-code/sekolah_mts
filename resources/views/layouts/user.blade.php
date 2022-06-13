@@ -61,13 +61,7 @@
          <nav id="navbar" class="navbar">
             <ul>
                <li><a class="nav-link scrollto active" href="{{ route('user.index') }}">Beranda</a></li>
-               <li class="dropdown"><a href="#"><span>Profil</span> <i class="bi bi-chevron-down"></i></a>
-                  <ul>
-                     <li><a href="#">Visi & Misi</a></li>
-                     <li><a href="#">Struktur Organisasi</a></li>
-                     <li><a href="#">Data Guru</a></li>
-                     <li><a href="#">Data Siswa</a></li>
-                  </ul>
+               <li><a class="nav-link scrollto active" href="#visi-misi"><span>Visi & Misi</span></a>
                </li>
                <li class="dropdown"><a href="#"><span>Berita & Artikel</span> <i class="bi bi-chevron-down"></i></a>
                   <ul>
@@ -76,19 +70,11 @@
                      <li><a href="{{ route('user.post', ['pengumuman']) }}">Penggumuman</a></li>
                   </ul>
                </li>
-               <li class="dropdown"><a href="#"><span>Kurikulum</span> <i class="bi bi-chevron-down"></i></a>
-                  <ul>
-                     <li><a href="#">Kelas X</a></li>
-                     <li><a href="#">Kelas XI</a></li>
-                     <li><a href="#">Kelas XII</a></li>
-                  </ul>
-               </li>
                <li class="dropdown"><a href="#"><span>Informasi PPDB</span> <i class="bi bi-chevron-down"></i></a>
                   <ul>
                      <li><a href="{{ route('user.postdetail', ['informasi-ppdb', 1]) }}">Informasi
                            PPDB</a></li>
-                     <li><a href="#">Pendaftaran PPDB</a></li>
-                     <li><a href="#">Hasil Penggumuman</a></li>
+                     {{-- <li><a href="#">Pendaftaran PPDB</a></li> --}}
                   </ul>
                </li>
                <li><a class="nav-link scrollto" href="#contact">Kontak Kami</a></li>
@@ -110,7 +96,7 @@
             <div class="row">
 
                <div class="col-lg-3 col-md-6 footer-contact">
-                  <h3>SMAN 1 KEPANJEN</h3>
+                  <h3>MTs. Wahid Hasyim</h3>
                   <p>
                         Jl. Karyawiguna, Jetis,<br>
                         Mulyoagung, Kec. Dau,<br>
@@ -154,7 +140,7 @@
 
          <div class="me-lg-auto text-center text-lg-start">
             <div class="copyright">
-               &copy; Copyright <strong><span>SMAN 1 KEPANJEN</span></strong>. All Rights Reserved
+               &copy; Copyright <strong><span>MTs. Wahid Hasyim</span></strong>. All Rights Reserved
             </div>
          </div>
          <div class="social-links text-center text-lg-right pt-3 pt-lg-0">

@@ -29,7 +29,7 @@
                   </div>
                </div>
             </div>
-            <div class="col-xl-8 col-lg-7 d-flex">
+            <div class="col-xl-8 col-lg-7 d-flex" id="visi-misi">
                <div class="icon-boxes d-flex flex-column justify-content-center">
                   <div class="row">
                      <div class="col-xl-4 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100">

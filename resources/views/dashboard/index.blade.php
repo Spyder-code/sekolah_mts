@@ -31,7 +31,7 @@
                                 <span class="icon icon-user s-48"></span>
                             </div>
                             <div class="sc-counter s-36">{{ $dashboard['lecturer'] }}</div>
-                            <h6 class="counter-title">Jumlah Dosen</h6>
+                            <h6 class="counter-title">Jumlah Guru</h6>
                         </div>
                     </div>
                     <div class="col-lg-3">
@@ -40,7 +40,7 @@
                                 <span class="icon icon-user s-48"></span>
                             </div>
                             <div class="sc-counter s-36">{{ $dashboard['student'] }}</div>
-                            <h6 class="counter-title">Jumlah Mahasiswa</h6>
+                            <h6 class="counter-title">Jumlah Siswa</h6>
                         </div>
                     </div>
                 </div>
