@@ -14,7 +14,7 @@ class PostController extends Controller
 
    public function index()
    {
-      $post = Post::all();
+      $post = Post::all()->where('post_category_id','!=',4);
       $name = 'post';
       return view('dashboard.post.index', compact('post','name'));
    }

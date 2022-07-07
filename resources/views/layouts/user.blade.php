@@ -61,7 +61,7 @@
          <nav id="navbar" class="navbar">
             <ul>
                <li><a class="nav-link scrollto active" href="{{ route('user.index') }}">Beranda</a></li>
-               <li><a class="nav-link scrollto active" href="#visi-misi"><span>Visi & Misi</span></a>
+               <li><a class="nav-link scrollto" href="{{ url('/#visi-misi') }}"><span>Visi & Misi</span></a>
                </li>
                <li class="dropdown"><a href="#"><span>Berita & Artikel</span> <i class="bi bi-chevron-down"></i></a>
                   <ul>
@@ -77,7 +77,7 @@
                      {{-- <li><a href="#">Pendaftaran PPDB</a></li> --}}
                   </ul>
                </li>
-               <li><a class="nav-link scrollto" href="#contact">Kontak Kami</a></li>
+               <li><a class="nav-link scrollto" href="{{ url('/#contact') }}">Kontak Kami</a></li>
                <li><a class="nav-link scrollto" href="{{ route('login') }}">E-learning</a></li>
             </ul>
             <i class="bi bi-list mobile-nav-toggle"></i>
