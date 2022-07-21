@@ -35,6 +35,7 @@
    <!--/#app -->
    <script src="{{ asset('js/main.js') }}"></script>
    <script src="{{ asset('js/backend/sweetalert.min.js') }}"></script>
+   <script src="{{ asset('js/app.js') }}"></script>
    @stack('js')
    <script>
    $('.custom-file-input').on('change', function(e) {

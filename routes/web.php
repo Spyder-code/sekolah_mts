@@ -11,6 +11,7 @@
 |
 */
 
+use App\Events\SendMessage;
 use App\Http\Controllers\Api\QuizHistoryController;
 use App\Http\Controllers\ClassroomController;
 use App\Http\Controllers\CourseController;
@@ -35,6 +36,10 @@ use Illuminate\Support\Facades\Route;
 // });
 Route::get('/', function () {
    return redirect()->route('dashboard');
+});
+Route::get('send', function () {
+    $a = broadcast(new SendMessage('Hai semuanya', 'sadsad-7A'));
+   return view('test');
 });
 
 Auth::routes();

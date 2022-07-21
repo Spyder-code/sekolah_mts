@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\Classroom;
+use App\Models\ClassStudent;
 use Illuminate\Support\Facades\Broadcast;
 
 /*
@@ -15,4 +17,16 @@ use Illuminate\Support\Facades\Broadcast;
 
 Broadcast::channel('App.Models.User.{id}', function ($user, $id) {
     return (int) $user->id === (int) $id;
+});
+
+// Broadcast::channel('room', function ($user) {
+//     return true;
+// });
+
+Broadcast::channel('classroom.{id}', function ($user, $id) {
+    $classroom = Classroom::where('id', $id)->first();
+    $studentClass = ClassStudent::where('room_id',$classroom->room_id)->where('user_id',$user->id)->first();
+    if ($studentClass!=null) {
+        return true;
+    }
 });

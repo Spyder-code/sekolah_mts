@@ -1,5 +1,8 @@
 @extends('layouts.app')
 @section('title','Classroom - ')
+@push('css')
+    <link rel="stylesheet" href="{{ asset('css/chat.css') }}">
+@endpush
 @section('content')
     <header class="white b-b p-3">
         <div class="container-fluid">
@@ -242,6 +245,50 @@
         </div>
     </div>
 
+    <div class="chat-bar-collapsible">
+        <button id="chat-button" type="button" class="collapsible active">Discussion
+            <i id="chat-icon" style="color: #fff;" class="fas fa-comment"></i>
+        </button>
+        <div class="content" style="max-height: 500px;">
+            <div class="full-chat-block">
+                <!-- Message Container -->
+                <div class="outer-container">
+                    <div class="chat-container">
+                        <!-- Messages -->
+                        <div id="chatbox">
+                            <h5 id="chat-timestamp">07:20</h5>
+                            {{-- @foreach ($discussion as $item)
+                                @if (Auth::id()!=$item->user_id)
+                                    <p class="botText my-2">
+                                        <span>{{ $item->text }} <sup class="ml-3 {{ $item->user_id==$room->creator_id?'bg-success y-1':'' }}"><small>{{ $item->user_id==$room->creator_id?'Teacher':$item->user->username }}</small></sup></span>
+                                    </p>
+                                @else
+                                    <p class="userText my-2">
+                                        <span><sup class="mr-3 {{ $item->user_id==$room->creator_id?'bg-success p-1 rounded':'' }}" ><small>{{ $item->user_id==$room->creator_id?'Teacher':$item->user->username }}</small></sup> {{ $item->text }}</span>
+                                    </p>
+                                @endif
+                            @endforeach --}}
+                            <div id="response"></div>
+                        </div>
+                        <!-- User input box -->
+                        <div class="chat-bar-input-block">
+                            <div id="userInput">
+                                <input id="textInput" class="input-box" type="text" name="msg" placeholder="Tap 'Enter' to send a message">
+                                <p></p>
+                            </div>
+                            <div class="chat-bar-icons">
+                                {{-- <i id="chat-icon" style="color: crimson;" class="fa fa-fw fa-heart" onclick="heartButton()"></i> --}}
+                                <i id="chat-icon" style="color: #333;" class="fa fa-fw fa-send" onclick="sendMessage()"></i>
+                            </div>
+                        </div>
+                        <div id="chat-bar-bottom">
+                            <p></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     @can('guru')
         @component('components.modal', ['selector' => 'add_materi'])
             @slot('title')
@@ -294,6 +341,15 @@
 
 @endsection
 @push('js')
+    <script src="{{ asset('js/chat.js') }}"></script>
+    <script>
+        let classroomId = @json($classroom['id']);
+        Echo.private(`classroom.${classroomId}`)
+            .listen('SendMessage', (e) => {
+                console.log(e);
+            });
+
+    </script>
     <script>
         @if(session()->has('success'))
         swal("Berhasil !", '{{ session()->get('success') }}', "success");
