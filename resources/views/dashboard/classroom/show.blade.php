@@ -257,17 +257,17 @@
                         <!-- Messages -->
                         <div id="chatbox">
                             <h5 id="chat-timestamp">07:20</h5>
-                            {{-- @foreach ($discussion as $item)
+                            @foreach ($discussions as $item)
                                 @if (Auth::id()!=$item->user_id)
                                     <p class="botText my-2">
-                                        <span>{{ $item->text }} <sup class="ml-3 {{ $item->user_id==$room->creator_id?'bg-success y-1':'' }}"><small>{{ $item->user_id==$room->creator_id?'Teacher':$item->user->username }}</small></sup></span>
+                                        <span>{{ $item->message }} <sup class="ml-3 {{ $item->user_id==$classroom['user_id']?'bg-success y-1':'' }}"><small>{{ $item->user_id==$classroom['user_id']?'Teacher':$item->user->username }}</small></sup></span>
                                     </p>
                                 @else
                                     <p class="userText my-2">
-                                        <span><sup class="mr-3 {{ $item->user_id==$room->creator_id?'bg-success p-1 rounded':'' }}" ><small>{{ $item->user_id==$room->creator_id?'Teacher':$item->user->username }}</small></sup> {{ $item->text }}</span>
+                                        <span><sup class="mr-3 {{ $item->user_id==$classroom['user_id']?'bg-success p-1 rounded':'' }}" ><small>{{ $item->user_id==$classroom['user_id']?'Teacher':$item->user->username }}</small></sup> {{ $item->message }}</span>
                                     </p>
                                 @endif
-                            @endforeach --}}
+                            @endforeach
                             <div id="response"></div>
                         </div>
                         <!-- User input box -->
@@ -349,6 +349,29 @@
                 console.log(e);
             });
 
+            $('#textInput').keypress(function (e) {
+                if(e.keyCode==13){
+                    sendMessage();
+                }
+            });
+
+            function sendMessage(){
+                var url = {!! json_encode(route('send')) !!}
+                var text = $('#textInput').val();
+                var user_id = {!! json_encode(Auth::id()) !!};
+                $.ajax({
+                    type: 'POST',
+                    url: url,
+                    data: {text:text,user_id:user_id,classroom_id:classroomId},
+                    success: function (data) {
+                        $('#textInput').val('');
+                        $('#response').append(data);
+                    },
+                    error: function (data) {
+                        console.log(data);
+                    }
+                });
+            }
     </script>
     <script>
         @if(session()->has('success'))

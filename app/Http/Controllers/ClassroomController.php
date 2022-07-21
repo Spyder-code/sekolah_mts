@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Attendance;
 use App\Models\Classroom;
 use App\Models\ClassStudent;
+use App\Models\Discussion;
 use App\Models\Quiz;
 use App\Models\QuizResult;
 use App\Models\Room;
@@ -109,7 +110,8 @@ class ClassroomController extends Controller
         // if ($classroom['enroll_code']) {
         //     $url = Bitly::getUrl(route('enroll.view', $classroom));
         // }
-        return view('dashboard.classroom.show', compact('classroom', 'url','room','data_quiz'));
+        $discussions = Discussion::all()->where('classroom_id',$classroom->id);
+        return view('dashboard.classroom.show', compact('classroom', 'url','room','data_quiz','discussions'));
     }
 
     public function update(Request $request, Classroom $classroom)
