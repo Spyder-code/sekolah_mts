@@ -18,6 +18,12 @@
                                 </ul>
                             </div>
                         @endif
+                        {{-- error message --}}
+                        @if(session('error'))
+                            <div class="alert alert-danger">
+                                {{ session('error') }}
+                            </div>
+                        @endif
                         <form action="{{ route('quiz.store') }}" method="post" enctype="multipart/form-data">
                             @csrf
                             <input type="hidden" name="classroom_id" value="{{ $classroom['id'] }}">
@@ -81,7 +87,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="editor">Deskripsi <span class="text-danger">*</span></label>
-                                        <textarea name="description" class="form-control" rows="5">{{ old('description') }}</textarea>
+                                        <textarea name="description" required class="form-control" rows="5">{{ old('description') }}</textarea>
                                     </div>
                                 </div>
                             </div>
@@ -112,7 +118,7 @@
                                                         <textarea name="answer_1[]" cols="30" rows="2" class="form-control" style="font-size: 9pt">{{ old('answer_1[]') }}</textarea>
                                                     </td>
                                                     <td>
-                                                        <textarea name="answer_2[]" cols="30" rows="2" class="form-control" style="font-size: 9pt">{{ old('answer_2') }}</textarea>
+                                                        <textarea name="answer_2[]" cols="30" rows="2" class="form-control" style="font-size: 9pt">{{ old('answer_2[]') }}</textarea>
                                                     </td>
                                                     <td>
                                                         <textarea name="answer_3[]" cols="30" rows="2" class="form-control" style="font-size: 9pt">{{ old('answer_3[]') }}</textarea>

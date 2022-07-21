@@ -15,14 +15,14 @@
                </div>
 
                <h2 class="entry-title">
-                  <a href="blog-single.html">{{ ucwords(mb_strimwidth($post->title, 0, 30, '...')) }}</a>
+                  <a href="#">{{ ucwords(mb_strimwidth($post->title, 0, 30, '...')) }}</a>
                </h2>
 
                <div class="entry-meta">
                   <ul>
                      <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a
-                           href="blog-single.html">Admin</a></li>
-                     <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="blog-single.html"><time
+                           href="#">Admin</a></li>
+                     <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="#"><time
                               datetime="2020-01-01">{{ date('d F Y', strtotime($post->created_at)) }}</time></a></li>
                      <!-- <li class="d-flex align-items-center"><i class="bi bi-chat-dots"></i> <a href="blog-single.html">12
                            Comments</a></li> -->

@@ -175,6 +175,8 @@ class PageController extends Controller
 
    public function post(Request $request, $postname)
    {
+
+    dd($postname);
       switch ($postname) {
          case 'berita':
             $post = array();

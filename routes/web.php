@@ -22,6 +22,7 @@ use App\Http\Controllers\QuizController;
 use App\Http\Controllers\IntermezzoController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\RankingController;
 use App\Http\Controllers\RaporController;
 use App\Http\Controllers\RoomController;
 use App\Http\Controllers\StudentController;
@@ -42,6 +43,7 @@ Route::group(['middleware' => ['auth']], function () {
    Route::get('/dashboard', DashboardController::class)->name('dashboard');
 
    Route::post('classroom/quiz/add',[QuizController::class,'store'])->name('quiz.store');
+   Route::delete('classroom/quiz/destroy/{quiz}',[QuizController::class,'destroy'])->name('quiz.destroy');
    Route::get('classroom/quiz/{quiz}', [QuizController::class,'show'])->name('quiz.show');
    Route::get('classroom/{classroom}/{quiz_result}', [QuizController::class,'detail'])->name('quiz.detail');
    // Route::post('classroom/quiz/{quiz}/submit', 'SubmitQuizController')->name('quiz.submit');
@@ -76,6 +78,7 @@ Route::group(['middleware' => ['auth']], function () {
    Route::group(['middleware' => ['can:siswa']], function () {
        Route::get('history_quiz', QuizHistoryController::class)->name('quiz.history');
        Route::get('raport', [RaporController::class,'index'])->name('rapor.index');
+       Route::get('ranking', [RankingController::class,'index'])->name('ranking.index');
    });
 
    Route::group(['middleware' => ['can:admin']], function () {

@@ -54,7 +54,12 @@
             class="{{ setActive(['rapor.index', 'rapor.student', 'rapor.create','rapor.edit', 'rapor.show']) }}">
             <a href="{{ route('rapor.index') }}"><i
                 class="icon icon-room_service s-18 text-purple"></i>E-Rapor</a>
-        </li>
+            </li>
+            <li
+            class="{{ setActive(['ranking.index']) }}">
+            <a href="{{ route('ranking.index') }}"><i
+                class="icon icon-room_service s-18 text-purple"></i>Ranking</a>
+            </li>
          @endcan
          @endif
          @can('admin')

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Attendance;
 use App\Models\Classroom;
 use App\Models\ClassStudent;
+use App\Models\Quiz;
 use App\Models\QuizResult;
 use App\Models\Room;
 use App\Models\User;
@@ -71,7 +72,6 @@ class ClassroomController extends Controller
 
     public function show(Classroom $classroom)
     {
-
         if (\auth()->user()->role == 'siswa') {
             $class = ClassStudent::where('user_id', \auth()->id())->where('room_id', $classroom['room_id'])->first();
 
@@ -92,6 +92,16 @@ class ClassroomController extends Controller
                             ->where('quizzes.classroom_id',$classroom->id)
                             ->select('quiz_results.status','quiz_results.score','quizzes.*')
                             ->get();
+            $quiz = Quiz::where('classroom_id',$classroom->id)->get();
+            if($quiz->count() > $data_quiz->count()){
+                foreach ($quiz as $itemq ) {
+                    QuizResult::create([
+                        'user_id' => Auth::id(),
+                        'quiz_id' => $itemq->id,
+                        'score' => 0,
+                    ]);
+                }
+            }
         }
 
         $url = null;

@@ -35,49 +35,55 @@ class QuizController extends Controller
             'end_date' => 'required|date|after:start_date',
         ]);
 
+        if($request->category!='TUGAS'){
+            $cek = Quiz::where('classroom_id',$request->classroom_id)->where('category','TUGAS')->get();
+            if(count($cek)==0){
+                return redirect()->back()->with('error', 'Anda harus membuat Tugas terlebih dahulu');
+            }
+        }
+
         $validated['start_date'] = Carbon::parse($validated['start_date']);
         $validated['end_date'] = Carbon::parse($validated['end_date']);
         $quiz = Quiz::create($validated);
 
-            $i = 1;
-
-            for ($i=0; $i < count($request->question); $i++) {
-                if ($request->question[$i]!=null) {
-                    $soal = [
-                        'quiz_id' => $quiz->id,
-                        'question' => $request->question[$i],
-                        'answer_1' => $request->answer_1[$i],
-                        'answer_2' => $request->answer_2[$i],
-                        'answer_3' => $request->answer_3[$i],
-                        'answer_4' => $request->answer_4[$i],
-                        'answer_5' => $request->answer_5[$i],
-                        'correct' => $request->correct[$i],
-                    ];
-                    Question::create($soal);
-                }
-            }
-
-            foreach ($request->essay as $item ) {
-                if ($item!=null) {
-                    $soal = [
-                        'quiz_id' => $quiz->id,
-                        'question' => $item,
-                        'category' => 'essay',
-                    ];
-                    Question::create($soal);
-                }
-            }
-
-            $classroom = Classroom::find($validated['classroom_id']);
-            $student = ClassStudent::all()->where('room_id',$classroom->room_id);
-
-            foreach ($student as $item ) {
-                QuizResult::create([
-                    'user_id' => $item->user_id,
+        for ($i=0; $i < count($request->question); $i++) {
+            if ($request->question[$i]!=null) {
+                $soal = [
                     'quiz_id' => $quiz->id,
-                    'score' => 0,
-                ]);
+                    'question' => $request->question[$i],
+                    'answer_1' => $request->answer_1[$i],
+                    'answer_2' => $request->answer_2[$i],
+                    'answer_3' => $request->answer_3[$i],
+                    'answer_4' => $request->answer_4[$i],
+                    'answer_5' => $request->answer_5[$i],
+                    'correct' => $request->correct[$i],
+                ];
+                Question::create($soal);
             }
+        }
+
+        foreach ($request->essay as $item ) {
+            if ($item!=null) {
+                $soal = [
+                    'quiz_id' => $quiz->id,
+                    'question' => $item,
+                    'category' => 'essay',
+                ];
+                Question::create($soal);
+            }
+        }
+
+        $classroom = Classroom::find($validated['classroom_id']);
+        $student = ClassStudent::all()->where('room_id',$classroom->room_id);
+
+        foreach ($student as $item ) {
+            QuizResult::create([
+                'user_id' => $item->user_id,
+                'quiz_id' => $quiz->id,
+                'score' => 0,
+            ]);
+        }
+
 
             Session::flash('success', 'Quiz Berhasil dibuat');
 
@@ -192,12 +198,14 @@ class QuizController extends Controller
             }
         }
 
-        for ($i=0; $i < count($request->id_essay); $i++) {
-            if ($request->essay[$i]!=null) {
-                $soal = [
-                    'question' => $request->essay[$i],
-                ];
-                Question::find($request->id_essay[$i])->update($soal);
+        if(!empty($request->id_essay)){
+            for ($i=0; $i < count($request->id_essay); $i++) {
+                if ($request->essay[$i]!=null) {
+                    $soal = [
+                        'question' => $request->essay[$i],
+                    ];
+                    Question::find($request->id_essay[$i])->update($soal);
+                }
             }
         }
 
@@ -220,11 +228,14 @@ class QuizController extends Controller
         // status 0->belum mengerjakan; 1->sudah mengerjakan belum dinilai; 2->sudah selesai
         $id_user = Auth::id();
         $quiz_result =  QuizResult::where('user_id',$id_user)->where('quiz_id',$quiz->id)->first();
-        $now = date('Y-m-d');
-        $now =date('Y-m-d', strtotime($now));
+        $now = date('Y-m-d H:i:s');
+        $now = strtotime($now);
+        // dd($now);
         //echo $now; // echos today!
-        $contractDateBegin = date('Y-m-d', strtotime($quiz->start_date));
-        $contractDateEnd = date('Y-m-d', strtotime($quiz->end_date));
+        $start = date('Y-m-d H:i:s', strtotime($quiz->start_date));
+        $end = date('Y-m-d H:i:s', strtotime($quiz->end_date));
+        $contractDateBegin = strtotime($start);
+        $contractDateEnd = strtotime($end);
 
         if (($now >= $contractDateBegin) && ($now <= $contractDateEnd)){
             if($quiz_result->status>0){
@@ -291,5 +302,13 @@ class QuizController extends Controller
         Session::flash('success', 'Berhasil menilai siswa!');
 
         return redirect()->route('quiz.detail',['classroom'=>$request->classroom_id,'quiz_result'=>$quiz_result->id]);
+    }
+
+    public function destroy(Quiz $quiz)
+    {
+        $quiz->delete();
+        Session::flash('success', 'Quiz Berhasil dihapus');
+
+        return redirect()->route('classroom.show', $quiz->classroom_id);
     }
 }

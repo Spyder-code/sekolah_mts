@@ -137,16 +137,21 @@
                                                 <td>{{ $loop->iteration }}</td>
                                                 <td>{{ $quiz->name }}</td>
                                                 <td>{{ strip_tags($quiz['description']) }}</td>
-                                                <td>{{ date('d M Y, H:i', strtotime($quiz->start_date))}}
-                                                    - {{ date('d M Y, H:i', strtotime($quiz->end_date)) }}</td>
+                                                <td>{{ date('d/m/Y, H:i', strtotime($quiz->start_date))}}
+                                                    - {{ date('d/m/Y, H:i', strtotime($quiz->end_date)) }}</td>
                                                     @can('siswa')
                                                         <td>{{ $quiz->status==0?'Belum mengerjakan':($quiz->status==1?'Belum dinilai':'Complete') }}</td>
                                                         <td>{{ $quiz->score }}</td>
                                                     @endcan
                                                 <td>
                                                     @can('guru')
-                                                        <a href="{{ route('quiz.edit', ['classroom' => $classroom, 'quiz' => $quiz]) }}" class="btn btn-success btn-xs">Edit</a>
-                                                        <a href="{{ route('quiz.show', ['quiz' => $quiz->id]) }}" class="btn btn-primary btn-xs">Lihat hasil</a>
+                                                        <a href="{{ route('quiz.edit', ['classroom' => $classroom, 'quiz' => $quiz]) }}" class="btn mt-1 btn-success btn-xs">Edit</a>
+                                                        <a href="{{ route('quiz.show', ['quiz' => $quiz->id]) }}" class="btn mt-1 btn-primary btn-xs">Lihat hasil</a>
+                                                        <form action="{{ route('quiz.destroy', $quiz) }}" method="post">
+                                                            @method('DELETE')
+                                                            @csrf
+                                                            <button type="submit" class="btn mt-1 btn-danger btn-xs" onclick="return confirm('are you sure?')">Hapus</button>
+                                                        </form>
                                                     @else
                                                         <form action="{{ route('quiz.kerjakan',['quiz'=>$quiz->id]) }}" method="post">
                                                             @csrf

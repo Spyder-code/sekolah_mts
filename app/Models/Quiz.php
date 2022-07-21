@@ -4,11 +4,10 @@ namespace App\Models;
 
 use App\Traits\Uuid;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Quiz extends Model
 {
-    use Uuid, SoftDeletes;
+    use Uuid;
 
     protected $fillable = [
         'name','category', 'description', 'classroom_id', 'quiz_provider_id', 'start_date', 'end_date', 'password'
