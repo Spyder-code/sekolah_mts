@@ -23,19 +23,19 @@ class DiscussionController extends Controller
         $user = User::find($request->user_id);
         if ($request->user_id==Auth::id()) {
             if(Auth::id()==$room->user_id){
-                $data = '<p class="userText my-2"><span><sup class="mr-3 bg-success p-1 rounded"><small> Teacher</small></sup>'.$request->text.'</span></p>';
-                $data1 = '<p class="botText my-2"><span> '.$request->text.'<sup class="ml-3 bg-success p-1 rounded"><small> Teacher</small></sup></span></p>';
+                $data = '<p class="userText my-2"><span><sup class="mr-3 bg-success p-1 rounded"><small> Teacher</small></sup>'.$request->message.'</span></p>';
+                $data1 = '<p class="botText my-2"><span> '.$request->message.'<sup class="ml-3 bg-success p-1 rounded"><small> Teacher</small></sup></span></p>';
             }else{
-                $data = '<p class="userText my-2"><span><sup class="mr-3"><small>'.$user->username.'</small></sup>'.$request->text.'</span></p>';
-                $data1 = '<p class="botText my-2"><span> '.$request->text.'<sup class="ml-3"><small>'.$user->username.'</small></sup></span></p>';
+                $data = '<p class="userText my-2"><span><sup class="mr-3"><small>'.$user->username.'</small></sup>'.$request->message.'</span></p>';
+                $data1 = '<p class="botText my-2"><span> '.$request->message.'<sup class="ml-3"><small>'.$user->username.'</small></sup></span></p>';
             }
         } else {
             if(Auth::id()==$room->user_id){
-                $data1 = '<p class="userText my-2"><span><sup class="mr-3 bg-success p-1 rounded"><small> Teacher</small></sup>'.$request->text.'</span></p>';
-                $data = '<p class="botText my-2"><span> '.$request->text.'<sup class="ml-3 bg-success p-1 rounded"><small> Teacher</small></sup></span></p>';
+                $data1 = '<p class="userText my-2"><span><sup class="mr-3 bg-success p-1 rounded"><small> Teacher</small></sup>'.$request->message.'</span></p>';
+                $data = '<p class="botText my-2"><span> '.$request->message.'<sup class="ml-3 bg-success p-1 rounded"><small> Teacher</small></sup></span></p>';
             }else{
-                $data1 = '<p class="userText my-2"><span><sup class="mr-3"><small>'.$user->username.'</small></sup>'.$request->text.'</span></p>';
-                $data = '<p class="botText my-2"><span> '.$request->text.'<sup class="ml-3"><small>'.$user->username.'</small></sup></span></p>';
+                $data1 = '<p class="userText my-2"><span><sup class="mr-3"><small>'.$user->username.'</small></sup>'.$request->message.'</span></p>';
+                $data = '<p class="botText my-2"><span> '.$request->message.'<sup class="ml-3"><small>'.$user->username.'</small></sup></span></p>';
             }
         }
         broadcast(new SendMessage($data1,$request->classroom_id))->toOthers();

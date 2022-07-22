@@ -256,7 +256,7 @@
                     <div class="chat-container">
                         <!-- Messages -->
                         <div id="chatbox">
-                            <h5 id="chat-timestamp">07:20</h5>
+                            <h5 id="chat-timestamp"></h5>
                             @foreach ($discussions as $item)
                                 @if (Auth::id()!=$item->user_id)
                                     <p class="botText my-2">
@@ -362,7 +362,7 @@
                 $.ajax({
                     type: 'POST',
                     url: url,
-                    data: {text:text,user_id:user_id,classroom_id:classroomId},
+                    data: {message:text,user_id:user_id,classroom_id:classroomId},
                     success: function (data) {
                         $('#textInput').val('');
                         $('#response').append(data);

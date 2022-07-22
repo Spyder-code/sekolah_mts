@@ -20,4 +20,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('send', [DiscussionController::class, 'sendMessage'])->name('send');
+Route::post('send', [DiscussionController::class, 'sendMessage'])->name('send');

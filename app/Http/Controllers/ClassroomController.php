@@ -32,7 +32,11 @@ class ClassroomController extends Controller
             $room = true;
         } else {
             $room = ClassStudent::where('user_id',$user->id)->first();
-            $classrooms = Classroom::all()->where('room_id',$room->room_id);
+            if($room!=null){
+                $classrooms = Classroom::all()->where('room_id',$room->room_id);
+            }else{
+                return back()->with('error', 'Anda belum memiliki ruang kelas');
+            }
             // $classrooms = Classroom::whereHas('students', function ($q) use ($user) {
             //     $q->where('user_id', $user['id']);
             // })->paginate(12);
