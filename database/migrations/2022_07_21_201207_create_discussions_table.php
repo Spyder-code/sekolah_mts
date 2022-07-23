@@ -15,7 +15,8 @@ return new class extends Migration
     {
         Schema::create('discussions', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('classroom_id')->constrained('classroms');
+            $table->char('classroom_id', 32);
+            $table->foreign('classroom_id')->references('id')->on('classrooms');
             $table->foreignId('user_id')->constrained();
             $table->string('message');
             $table->timestamps();

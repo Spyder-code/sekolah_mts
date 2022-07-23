@@ -38,8 +38,8 @@ Route::get('/', function () {
    return redirect()->route('dashboard');
 });
 Route::get('send', function () {
-    $a = broadcast(new SendMessage('Hai semuanya', 'sadsad-7A'));
-   return view('test');
+    $a = broadcast(new SendMessage('Hai semuanya', 'mtk-X-IPA-1'))->via('pusher');
+    return response($a);
 });
 
 Auth::routes();

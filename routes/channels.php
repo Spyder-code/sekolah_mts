@@ -19,14 +19,23 @@ Broadcast::channel('App.Models.User.{id}', function ($user, $id) {
     return (int) $user->id === (int) $id;
 });
 
-// Broadcast::channel('room', function ($user) {
-//     return true;
-// });
+Broadcast::channel('room', function ($user) {
+    return true;
+});
 
 Broadcast::channel('classroom.{id}', function ($user, $id) {
-    $classroom = Classroom::where('id', $id)->first();
-    $studentClass = ClassStudent::where('room_id',$classroom->room_id)->where('user_id',$user->id)->first();
-    if ($studentClass!=null) {
-        return true;
+    if($user->role=='guru'){
+        $classroom = Classroom::where('id', $id)->where('user_id', $user->id)->first();
+        if($classroom){
+            return true;
+        }
+    }else if($user->role=='siswa'){
+        $classroom = Classroom::where('id', $id)->first();
+        if($classroom){
+            $classstudent = ClassStudent::where('room_id', $classroom->room_id)->where('user_id', $user->id)->first();
+            if($classstudent){
+                return true;
+            }
+        }
     }
 });

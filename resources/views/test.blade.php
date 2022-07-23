@@ -12,7 +12,7 @@
     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam, pariatur. Omnis dicta nulla eveniet aperiam quisquam dolor! Ipsum, provident cupiditate eaque quae temporibus sit excepturi hic perspiciatis commodi facilis eius.</p>
     <script src="{{ asset('js/app.js') }}"></script>
     <script>
-        Echo.channel(`room`)
+        Echo.private(`classroom.mtk-X-IPA-1`)
         .listen('newMessage', (e) => {
             console.log(e);
         });

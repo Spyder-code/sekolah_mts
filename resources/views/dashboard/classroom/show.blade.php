@@ -260,11 +260,11 @@
                             @foreach ($discussions as $item)
                                 @if (Auth::id()!=$item->user_id)
                                     <p class="botText my-2">
-                                        <span>{{ $item->message }} <sup class="ml-3 {{ $item->user_id==$classroom['user_id']?'bg-success y-1':'' }}"><small>{{ $item->user_id==$classroom['user_id']?'Teacher':$item->user->username }}</small></sup></span>
+                                        <span>{{ $item->message }} <sup class="ml-3 {{ $item->user_id==$classroom['user_id']?'bg-success y-1':'' }}"><small>{{ $item->user_id==$classroom['user_id']?'Guru':$item->user->username }}</small></sup></span>
                                     </p>
                                 @else
                                     <p class="userText my-2">
-                                        <span><sup class="mr-3 {{ $item->user_id==$classroom['user_id']?'bg-success p-1 rounded':'' }}" ><small>{{ $item->user_id==$classroom['user_id']?'Teacher':$item->user->username }}</small></sup> {{ $item->message }}</span>
+                                        <span><sup class="mr-3 {{ $item->user_id==$classroom['user_id']?'bg-success p-1 rounded':'' }}" ><small>{{ $item->user_id==$classroom['user_id']?'Guru':$item->user->username }}</small></sup> {{ $item->message }}</span>
                                     </p>
                                 @endif
                             @endforeach
@@ -344,10 +344,10 @@
     <script src="{{ asset('js/chat.js') }}"></script>
     <script>
         let classroomId = @json($classroom['id']);
-        Echo.private(`classroom.${classroomId}`)
+            Echo.private(`classroom.${classroomId}`)
             .listen('SendMessage', (e) => {
-                console.log(e);
-            });
+                $('#response').append(e.message);
+            })
 
             $('#textInput').keypress(function (e) {
                 if(e.keyCode==13){
