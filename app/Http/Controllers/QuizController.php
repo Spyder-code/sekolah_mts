@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Classroom;
 use App\Models\ClassStudent;
+use App\Models\Discussion;
 use App\Models\Question;
 use App\Models\Quiz;
 use App\Models\QuizAnswer;
@@ -157,7 +158,9 @@ class QuizController extends Controller
     public function show(Quiz $quiz)
     {
         $data = QuizResult::all()->where('quiz_id', $quiz->id);
-        return view('dashboard.classroom.quiz.history', compact('quiz', 'data'));
+        $classroom = Classroom::find($quiz->classroom_id);
+        $discussions = Discussion::all()->where('classroom_id',$classroom->id);
+        return view('dashboard.classroom.quiz.history', compact('quiz', 'data', 'classroom', 'discussions'));
     }
 
     public function edit(Classroom $classroom, Quiz $quiz)
@@ -236,7 +239,8 @@ class QuizController extends Controller
         $end = date('Y-m-d H:i:s', strtotime($quiz->end_date));
         $contractDateBegin = strtotime($start);
         $contractDateEnd = strtotime($end);
-
+        $classroom = Classroom::find($quiz->classroom_id);
+        $discussions = Discussion::all()->where('classroom_id',$classroom->id);
         if (($now >= $contractDateBegin) && ($now <= $contractDateEnd)){
             if($quiz_result->status>0){
                 Session::flash('success', 'Anda sudah mengerjakan!');
@@ -244,7 +248,7 @@ class QuizController extends Controller
             }else{
                 $data = Question::all()->where('quiz_id',$quiz->id)->where('category','multiple choice');
                 $essay = Question::all()->where('quiz_id',$quiz->id)->where('category','essay');
-                return view('dashboard.classroom.quiz.show', compact('data','essay','quiz'));
+                return view('dashboard.classroom.quiz.show', compact('data','essay','quiz','classroom','discussions'));
             }
         }else{
             Session::flash('success', 'Waktu mengerjakan sudah habis!');
