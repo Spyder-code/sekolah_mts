@@ -2,6 +2,7 @@
 
 use App\Events\SendMessage;
 use App\Http\Controllers\DiscussionController;
+use App\Http\Controllers\QuizController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -21,3 +22,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::post('send', [DiscussionController::class, 'sendMessage'])->name('send');
+Route::post('leave-quiz', [QuizController::class, 'leaveQuiz'])->name('quiz.leave');

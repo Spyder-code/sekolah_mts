@@ -6,15 +6,15 @@
 @endpush
 @section('content')
     <div class="container-fluid my-3">
-        <div class="row justify-content-center">
-            <div class="col-md-12">
+        <div class="row">
+            <div class="col-md-12 col-12 mt-2">
                 <a href="{{ route('classroom.show',['classroom'=>$quiz->classroom_id]) }}" class="btn btn-danger btn-sm">Back</a>
                 <div class="card no-b my-3 shadow">
                     <div class="card-header white">
                         <h6>Quiz {{ $quiz->name }}</h6>
                     </div>
                     <div class="card-body">
-                        <table class="table table-bordered table-hover dataTable">
+                        <table id="table-nilai" class="table table-bordered table-hover dataTable">
                             <thead>
                             <tr>
                                 <th width="8%">No</th>
@@ -33,10 +33,14 @@
                                     <td>
                                         @if ($item->status==0)
                                             <div class="alert alert-danger">
-                                                <strong>Belum mengerjakan</strong>
+                                                <strong>Belum Membuka Quiz</strong>
                                             </div>
                                         @elseif($item->status==1)
                                             <div class="alert alert-info">
+                                                <strong>Sedang Mengerjakan Quiz</strong>
+                                            </div>
+                                        @elseif($item->status==2)
+                                            <div class="alert alert-warning">
                                                 <strong>Belum dinilai</strong>
                                             </div>
                                         @else
@@ -54,6 +58,27 @@
                                     </td>
                                 </tr>
                             @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12 col-12 mt-2">
+                <div class="card p-4">
+                    <h4 class="card-headers my-2">
+                        Laporan Pengerjaan
+                    </h4>
+                    <hr>
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-striped" id="table-report" style="width: 100%">
+                            <thead>
+                                <tr>
+                                    <th>Nama Siswa</th>
+                                    <th>Report</th>
+                                    <th>Waktu</th>
+                                </tr>
+                            </thead>
+                            <tbody>
                             </tbody>
                         </table>
                     </div>
@@ -111,10 +136,32 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/js/all.min.js" integrity="sha512-6PM0qYu5KExuNcKt5bURAoT6KCThUmHRewN3zUFNaoI6Di7XJPTMoT6K0nsagZKk2OB4L7E3q1uQKHNHd4stIQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="{{ asset('js/chat.js') }}"></script>
     <script>
-        let classroomId = @json($classroom['id']);
+        let quiz_id = '{{ $quiz->id }}';
+        var table = $("#table-report").DataTable({
+            processing: true,
+            serverSide: true,
+            ajax: {
+            url: '{!! route('datatable.quiz-report') !!}',
+            type: 'GET',
+            data: {
+                    quiz_id: quiz_id,
+                },
+            },
+            columns: [
+                {data: 'user_id', name: 'user_id'},
+                {data: 'report', name: 'report'},
+                {data: 'created_at', name: 'created_at'},
+            ]
+        });
+
+            let classroomId = @json($classroom['id']);
             Echo.private(`classroom.${classroomId}`)
             .listen('SendMessage', (e) => {
                 $('#response').append(e.message);
+            })
+            Echo.channel(`quiz.${quiz_id}`)
+            .listen('QuizReport', (e) => {
+                table.ajax.reload();
             })
 
             $('#textInput').keypress(function (e) {
@@ -143,7 +190,7 @@
     </script>
 
     <script>
-        $('.dataTable').DataTable({
+        $('#table-nilai').DataTable({
             "columnDefs": [{
                 "orderable": false
             }],

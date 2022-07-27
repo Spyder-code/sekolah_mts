@@ -30,7 +30,8 @@
         "symfony/string": "6.0.*",
         "symfony/translation": "6.0.*",
         "symfony/translation-contracts": "3.0.*",
-        "symfony/var-dumper": "6.0.*"
+        "symfony/var-dumper": "6.0.*",
+        "yajra/laravel-datatables-oracle": "^10.0"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",

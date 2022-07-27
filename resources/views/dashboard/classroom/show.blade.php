@@ -150,7 +150,7 @@
                                                 <td>
                                                     @can('guru')
                                                         <a href="{{ route('quiz.edit', ['classroom' => $classroom, 'quiz' => $quiz]) }}" class="btn mt-1 btn-success btn-xs">Edit</a>
-                                                        <a href="{{ route('quiz.show', ['quiz' => $quiz->id]) }}" class="btn mt-1 btn-primary btn-xs">Lihat hasil</a>
+                                                        <a href="{{ route('quiz.show', ['quiz' => $quiz->id]) }}" class="btn mt-1 btn-primary btn-xs">Lihat Detail</a>
                                                         <form action="{{ route('quiz.destroy', $quiz) }}" method="post">
                                                             @method('DELETE')
                                                             @csrf

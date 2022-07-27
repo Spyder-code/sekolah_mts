@@ -11,6 +11,7 @@
 |
 */
 
+use App\Events\QuizReport;
 use App\Events\SendMessage;
 use App\Http\Controllers\Api\QuizHistoryController;
 use App\Http\Controllers\ClassroomController;
@@ -38,8 +39,7 @@ Route::get('/', function () {
    return redirect()->route('dashboard');
 });
 Route::get('send', function () {
-    $a = broadcast(new SendMessage('Hai semuanya', 'mtk-X-IPA-1'))->via('pusher');
-    return response($a);
+    broadcast(new QuizReport('96ddcdc2e9e24999a1038c4ae8fda3b8', 20,'Mulai Mengerjakan'))->toOthers();
 });
 
 Auth::routes();
@@ -110,6 +110,7 @@ Route::group(['middleware' => ['auth']], function () {
 //    });
 });
 Route::get('/home', [HomeController::class,'index'])->name('home');
+Route::get('/data-quiz-report', [QuizController::class,'quizReport'])->name('datatable.quiz-report');
 
 
 

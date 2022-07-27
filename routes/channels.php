@@ -39,3 +39,7 @@ Broadcast::channel('classroom.{id}', function ($user, $id) {
         }
     }
 });
+
+Broadcast::channel('quiz.{id}', function ($user, $id) {
+    return true;
+});

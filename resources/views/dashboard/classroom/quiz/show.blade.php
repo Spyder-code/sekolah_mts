@@ -164,6 +164,50 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/js/all.min.js" integrity="sha512-6PM0qYu5KExuNcKt5bURAoT6KCThUmHRewN3zUFNaoI6Di7XJPTMoT6K0nsagZKk2OB4L7E3q1uQKHNHd4stIQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="{{ asset('js/chat.js') }}"></script>
     <script>
+        // beforeunload event
+        var timeout;
+
+        $(window).on('beforeunload', function (){
+            timeout = setTimeout(function() {
+                console.log('stay');
+            }, 1000);
+            return "You save some unsaved data, Do you want to leave?";
+        });
+
+        $(document).ready(function () {
+            var idleState = false;
+            var idleTimer = null;
+
+            const leave = () =>{
+                var url = {!! json_encode(route('quiz.leave')) !!}
+                var quiz_id = {!! json_encode($quiz->id) !!}
+                var user_id = {!! json_encode(Auth::id()) !!};
+                $.ajax({
+                    type: 'POST',
+                    url: url,
+                    data: {quiz_id:quiz_id,user_id:user_id},
+                    success: function (data) {
+                        console.log(data);
+                    },
+                    error: function (data) {
+                        console.log(data);
+                    }
+                });
+            }
+            $('*').bind('mousemove click mouseup mousedown mouseenter scroll dblclick', function () {
+                clearTimeout(idleTimer);
+                if (idleState == true) {
+                    $("body").css('background-color','#fff');
+                }
+                idleState = false;
+                idleTimer = setTimeout(function () {
+                    leave();
+                    $("body").css('background-color','#000');
+                    idleState = true; }, 30000);
+            });
+        });
+
+
         let classroomId = @json($classroom['id']);
             Echo.private(`classroom.${classroomId}`)
             .listen('SendMessage', (e) => {

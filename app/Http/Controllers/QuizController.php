@@ -2,17 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\QuizReport;
 use App\Models\Classroom;
 use App\Models\ClassStudent;
 use App\Models\Discussion;
 use App\Models\Question;
 use App\Models\Quiz;
 use App\Models\QuizAnswer;
+use App\Models\QuizReport as ModelsQuizReport;
 use App\Models\QuizResult;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
+use Yajra\Datatables\Datatables;
 
 class QuizController extends Controller
 {
@@ -228,7 +231,7 @@ class QuizController extends Controller
 
     public function kerjakan(Quiz $quiz)
     {
-        // status 0->belum mengerjakan; 1->sudah mengerjakan belum dinilai; 2->sudah selesai
+        // status 0->belum mengerjakan; 1->mengerjakan; 2->belum dinilai; 3->sudah dinilai
         $id_user = Auth::id();
         $quiz_result =  QuizResult::where('user_id',$id_user)->where('quiz_id',$quiz->id)->first();
         $now = date('Y-m-d H:i:s');
@@ -242,16 +245,23 @@ class QuizController extends Controller
         $classroom = Classroom::find($quiz->classroom_id);
         $discussions = Discussion::all()->where('classroom_id',$classroom->id);
         if (($now >= $contractDateBegin) && ($now <= $contractDateEnd)){
-            if($quiz_result->status>0){
+            if($quiz_result->status==3){
                 Session::flash('success', 'Anda sudah mengerjakan!');
                 return redirect()->route('classroom.show', $quiz->classroom_id);
             }else{
+                ModelsQuizReport::create([
+                    'quiz_id' => $quiz->id,
+                    'user_id' => $id_user,
+                    'report' => 'Mulai mengerjakan',
+                ]);
+                broadcast(new QuizReport($quiz->id, $id_user,'Mulai Mengerjakan'))->toOthers();
+                $quiz_result->update(['status'=>1]);
                 $data = Question::all()->where('quiz_id',$quiz->id)->where('category','multiple choice');
                 $essay = Question::all()->where('quiz_id',$quiz->id)->where('category','essay');
                 return view('dashboard.classroom.quiz.show', compact('data','essay','quiz','classroom','discussions'));
             }
         }else{
-            Session::flash('success', 'Waktu mengerjakan sudah habis!');
+            Session::flash('danger', 'Waktu mengerjakan sudah habis!');
             return redirect()->route('classroom.show', $quiz->classroom_id);
         }
 
@@ -286,15 +296,22 @@ class QuizController extends Controller
                     'is_correct' => 2
                 ]);
             }
-            QuizResult::find($quiz_result->id)->update(['status'=>1]);
+            QuizResult::find($quiz_result->id)->update(['status'=>2]);
         }else{
             $soal = QuizAnswer::all()->where('quiz_result_id',$quiz_result->id);
             $benar = QuizAnswer::all()->where('quiz_result_id',$quiz_result->id)->where('is_correct',1)->count();
             $count_soal = count($soal);
             $score = ($benar/$count_soal) * 100;
-            QuizResult::find($quiz_result->id)->update(['score'=>$score,'status'=>2]);
+            QuizResult::find($quiz_result->id)->update(['score'=>$score,'status'=>3]);
         }
 
+        $id_user = Auth::id();
+        ModelsQuizReport::create([
+            'quiz_id' => $quiz->id,
+            'user_id' => $id_user,
+            'report' => 'Selesai mengerjakan',
+        ]);
+        broadcast(new QuizReport($quiz->id, $id_user,'Selesai Mengerjakan'));
         Session::flash('success', 'Quiz Berhasil dikerjakan');
 
         return redirect()->route('classroom.show', $quiz->classroom_id);
@@ -302,7 +319,7 @@ class QuizController extends Controller
 
     public function updateNilai(QuizResult $quiz_result, Request $request)
     {
-        QuizResult::find($quiz_result->id)->update(['score'=>$request->score,'status'=>2]);
+        QuizResult::find($quiz_result->id)->update(['score'=>$request->score,'status'=>3]);
         Session::flash('success', 'Berhasil menilai siswa!');
 
         return redirect()->route('quiz.detail',['classroom'=>$request->classroom_id,'quiz_result'=>$quiz_result->id]);
@@ -314,5 +331,33 @@ class QuizController extends Controller
         Session::flash('success', 'Quiz Berhasil dihapus');
 
         return redirect()->route('classroom.show', $quiz->classroom_id);
+    }
+
+    public function leaveQuiz()
+    {
+        $quiz_id = request('quiz_id');
+        $user_id = request('user_id');
+        $data = ModelsQuizReport::create([
+            'quiz_id' => $quiz_id,
+            'user_id' => $user_id,
+            'report' => 'Meninggalkan Halaman Quiz',
+        ]);
+        broadcast(new QuizReport($quiz_id, $user_id,'Meninggalkan Halaman Quiz'));
+        return response()->json($data);
+    }
+
+    public function quizReport()
+    {
+        $quiz_id = request('quiz_id');
+        $data = ModelsQuizReport::where('quiz_id', $quiz_id)->select('id','user_id','created_at','report')->orderBy('created_at','desc');
+
+        return DataTables::of($data)
+            ->addColumn('user_id', function($data){
+                return $data->user->name;
+            })
+            ->addColumn('created_at', function($data){
+                return date('H:i:s', strtotime($data->created_at));
+            })
+            ->make(true);
     }
 }
