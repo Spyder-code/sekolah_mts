@@ -304,7 +304,17 @@ class QuizController extends Controller
             $count_soal = count($soal);
             $score = ($benar/$count_soal) * 100;
             QuizResult::find($quiz_result->id)->update(['score'=>$score,'status'=>3]);
-            $quiz_result->student->notify(new SendPoint());
+            $user = $quiz_result->student;
+            $class = ClassStudent::where('user_id',$user->id)->first()->room->name;
+            $data = [
+                'nama' => $user->name,
+                'kelas' => $class,
+                'mapel' => $quiz->classroom->name,
+                'kategori' => $quiz->category,
+                'waktu' => date('d/m/Y H:i', strtotime($quiz->start_date)),
+                'nilai' => $score,
+            ];
+            $quiz_result->student->notify(new SendPoint($data));
         }
 
         $id_user = Auth::id();
@@ -322,7 +332,18 @@ class QuizController extends Controller
     public function updateNilai(QuizResult $quiz_result, Request $request)
     {
         QuizResult::find($quiz_result->id)->update(['score'=>$request->score,'status'=>3]);
-        $quiz_result->student->notify(new SendPoint());
+        $user = $quiz_result->student;
+        $quiz = Quiz::find($quiz_result->quiz_id);
+        $class = ClassStudent::where('user_id',$user->id)->first()->room->name;
+        $data = [
+            'nama' => $user->name,
+            'kelas' => $class,
+            'mapel' => $quiz->classroom->name,
+            'kategori' => $quiz->category,
+            'waktu' => date('d/m/Y H:i', strtotime($quiz->start_date)),
+            'nilai' => $request->score,
+        ];
+        $quiz_result->student->notify(new SendPoint($data));
         Session::flash('success', 'Berhasil menilai siswa!');
         return redirect()->route('quiz.detail',['classroom'=>$request->classroom_id,'quiz_result'=>$quiz_result->id]);
     }

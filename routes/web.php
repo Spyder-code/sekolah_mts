@@ -43,9 +43,19 @@ Route::get('/', function () {
    return redirect()->route('dashboard');
 });
 Route::get('send', function () {
+    $data = [
+        'nama' => 'almi',
+        'kelas' => 'XI RPL 1',
+        'mapel' => 'Pemrograman',
+        'kategori' => 'Ujian',
+        'waktu' => '20/10/2019',
+        'nilai' => '80'
+    ];
     Notification::route('mail', [
         'luaysyauqillah@gmail.com' => 'Luay',
-    ])->notify(new SendPoint());
+    ])->notify(new SendPoint($data));
+
+    return response()->json(['success' => 'Notification sent!']);
 });
 
 Auth::routes();
