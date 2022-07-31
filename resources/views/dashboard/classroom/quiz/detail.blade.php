@@ -103,8 +103,8 @@
                             @method('PUT')
                             <div class="form-group">
                                 <label for="category"><strong>Nilai siswa</strong></label>
-                                <input type="text" required name="score" value="{{ $quiz_result->status==2?$quiz_result->score:'' }}" {{ $quiz_result->status==2?'disabled':'' }} class="form-control">
-                                @if ($quiz_result->status!=2)
+                                <input type="text" required name="score" value="{{ $quiz_result->status==3?$quiz_result->score:'' }}" {{ $quiz_result->status==3?'disabled':'' }} class="form-control">
+                                @if ($quiz_result->status!=3)
                                     <button type="submit" onclick="return confirm('Are you sure?')" class="btn btn-sm btn-success mt-4">Tambah nilai siswa</button>
                                 @endif
                             </div>

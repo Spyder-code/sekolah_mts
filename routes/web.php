@@ -30,7 +30,9 @@ use App\Http\Controllers\RoomController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\StudentTakeQuizController;
 use App\Http\Controllers\UserController;
+use App\Notifications\SendPoint;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Route;
 
 // Route::domain('ctrl'.env('APP_URL'))->group(function () {
@@ -39,7 +41,9 @@ Route::get('/', function () {
    return redirect()->route('dashboard');
 });
 Route::get('send', function () {
-    broadcast(new QuizReport('96ddcdc2e9e24999a1038c4ae8fda3b8', 20,'Mulai Mengerjakan'))->toOthers();
+    Notification::route('mail', [
+        'luaysyauqillah@gmail.com' => 'Luay',
+    ])->notify(new SendPoint());
 });
 
 Auth::routes();

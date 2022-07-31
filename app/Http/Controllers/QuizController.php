@@ -11,6 +11,7 @@ use App\Models\Quiz;
 use App\Models\QuizAnswer;
 use App\Models\QuizReport as ModelsQuizReport;
 use App\Models\QuizResult;
+use App\Notifications\SendPoint;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -162,7 +163,7 @@ class QuizController extends Controller
     {
         $data = QuizResult::all()->where('quiz_id', $quiz->id);
         $classroom = Classroom::find($quiz->classroom_id);
-        $discussions = Discussion::all()->where('classroom_id',$classroom->id);
+        $discussions = Discussion::all()->where('classroom_id',$classroom->id)->sortByDesc('created_at')->take(5);
         return view('dashboard.classroom.quiz.history', compact('quiz', 'data', 'classroom', 'discussions'));
     }
 
@@ -243,7 +244,7 @@ class QuizController extends Controller
         $contractDateBegin = strtotime($start);
         $contractDateEnd = strtotime($end);
         $classroom = Classroom::find($quiz->classroom_id);
-        $discussions = Discussion::all()->where('classroom_id',$classroom->id);
+        $discussions = Discussion::all()->where('classroom_id',$classroom->id)->sortByDesc('created_at')->take(5);
         if (($now >= $contractDateBegin) && ($now <= $contractDateEnd)){
             if($quiz_result->status==3){
                 Session::flash('success', 'Anda sudah mengerjakan!');
@@ -303,6 +304,7 @@ class QuizController extends Controller
             $count_soal = count($soal);
             $score = ($benar/$count_soal) * 100;
             QuizResult::find($quiz_result->id)->update(['score'=>$score,'status'=>3]);
+            $quiz_result->student->notify(new SendPoint());
         }
 
         $id_user = Auth::id();
@@ -320,8 +322,8 @@ class QuizController extends Controller
     public function updateNilai(QuizResult $quiz_result, Request $request)
     {
         QuizResult::find($quiz_result->id)->update(['score'=>$request->score,'status'=>3]);
+        $quiz_result->student->notify(new SendPoint());
         Session::flash('success', 'Berhasil menilai siswa!');
-
         return redirect()->route('quiz.detail',['classroom'=>$request->classroom_id,'quiz_result'=>$quiz_result->id]);
     }
 

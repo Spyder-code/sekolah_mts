@@ -114,7 +114,7 @@ class ClassroomController extends Controller
         // if ($classroom['enroll_code']) {
         //     $url = Bitly::getUrl(route('enroll.view', $classroom));
         // }
-        $discussions = Discussion::all()->where('classroom_id',$classroom->id);
+        $discussions = Discussion::all()->where('classroom_id',$classroom->id)->sortByDesc('created_at')->take(5);
         return view('dashboard.classroom.show', compact('classroom', 'url','room','data_quiz','discussions'));
     }
 
