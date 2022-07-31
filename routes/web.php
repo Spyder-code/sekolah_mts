@@ -22,6 +22,8 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\QuizController;
 use App\Http\Controllers\IntermezzoController;
+use App\Http\Controllers\MoneyBoxCategoryController;
+use App\Http\Controllers\MoneyBoxController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RankingController;
@@ -68,6 +70,9 @@ Route::group(['middleware' => ['auth']], function () {
    Route::get('classroom/mapel/{classroom}/edit', [ClassroomController::class,'edit'])->name('classroom.edit');
    Route::get('classroom/create/room/{room}', [ClassroomController::class,'create'])->name('classroom.create');
    Route::resource('classroom', ClassroomController::class)->except(['index','create','edit']);
+   Route::resource('moneyboxcategory', MoneyBoxCategoryController::class)->except(['create','edit']);
+   Route::resource('moneybox', MoneyBoxController::class)->except(['create','edit']);
+   Route::get('tabungan/siswa', [MoneyBoxController::class,'siswa'])->name('moneybox.siswa');
    Route::get('classrooms/students/{classroom}', [ClassroomController::class,'showStudents'])->name('classroom.students');
    Route::get('classroom/quiz_result/{classroom}', [ClassroomController::class,'showQuizResult'])->name('classroom.quiz.result');
    Route::delete('classroom/students/destroy/{classroomId}/{studentId}', [ClassroomController::class,'deleteStudent'])->name('classroom.student.destroy');

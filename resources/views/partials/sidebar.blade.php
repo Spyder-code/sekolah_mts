@@ -60,6 +60,11 @@
             <a href="{{ route('ranking.index') }}"><i
                 class="icon icon-room_service s-18 text-purple"></i>Ranking</a>
             </li>
+            <li
+            class="{{ setActive(['moneybox.siswa']) }}">
+            <a href="{{ route('moneybox.siswa') }}"><i
+                class="icon icon-room_service s-18 text-purple"></i>Tabungan Saya</a>
+            </li>
          @endcan
          @endif
          @can('admin')
@@ -77,6 +82,19 @@
          <li class="{{ setActive(route('post.edit', ['post' => 1])) }}"><a
                href="{{ route('post.edit', ['post' => 1]) }}"><i
                   class="icon icon-account_circle s-18 text-green"></i>Informasi PPDB</a></li>
+        <li class="header">
+            <strong>Tabungan Siswa</strong>
+        </li>
+        <li class="">
+            <a href="{{ route('moneyboxcategory.index') }}">
+                <i class="icon icon-box s-18 text-green"></i>Kategori Tabungan
+            </a>
+        </li>
+        <li class="">
+            <a href="{{ route('moneybox.index') }}">
+                <i class="icon icon-money s-18 text-green"></i>Tabungan Siswa
+            </a>
+        </li>
          @endcan
          <li class="header">
             <strong>Akun</strong>
