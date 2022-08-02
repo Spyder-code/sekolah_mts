@@ -38,7 +38,7 @@
                             <div class="form-group">
                                 <label for="email">Email</label>
                                 <input type="email" name="email" id="email" class="form-control"
-                                       value="{{ $user->email }}" required readonly>
+                                       value="{{ $user->email }}" required >
                             </div>
 
                             <div class="form-group">

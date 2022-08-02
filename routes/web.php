@@ -76,6 +76,7 @@ Route::group(['middleware' => ['auth']], function () {
    Route::put('classroom/quiz/update/nilai/{quiz_result}',[QuizController::class,'updateNilai'])->name('quiz.update.nilai');
    Route::post('classroom/quiz/submit/{quiz}',[QuizController::class,'submitQuiz'])->name('quiz.submit');
 
+   Route::get('read/{course}', [ClassroomController::class,'readFile'])->name('file.read');
    Route::get('classroom', [ClassroomController::class,'index'])->name('classroom.index');
    Route::get('classroom/mapel/{classroom}/edit', [ClassroomController::class,'edit'])->name('classroom.edit');
    Route::get('classroom/create/room/{room}', [ClassroomController::class,'create'])->name('classroom.create');

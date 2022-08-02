@@ -90,6 +90,9 @@
                                                     <a href="{{ route('file.download', $course['files'][0]['id']) }}"
                                                        class="btn btn-success btn-sm"><i
                                                             class="icon icon-angle-down"></i> Download</a>
+                                                    <a href="{{ route('file.read', $course['id']) }}"
+                                                       class="btn btn-primary btn-sm"><i
+                                                            class="icon icon-open"></i> Baca</a>
                                                 </td>
                                                 @can('guru')
                                                     <td><a href="#"

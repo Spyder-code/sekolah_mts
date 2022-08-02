@@ -246,7 +246,7 @@ class QuizController extends Controller
         $classroom = Classroom::find($quiz->classroom_id);
         $discussions = Discussion::all()->where('classroom_id',$classroom->id)->sortByDesc('created_at')->take(5);
         if (($now >= $contractDateBegin) && ($now <= $contractDateEnd)){
-            if($quiz_result->status==3){
+            if($quiz_result->status==3 || $quiz_result->status==2){
                 Session::flash('success', 'Anda sudah mengerjakan!');
                 return redirect()->route('classroom.show', $quiz->classroom_id);
             }else{

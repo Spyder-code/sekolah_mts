@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Attendance;
 use App\Models\Classroom;
 use App\Models\ClassStudent;
+use App\Models\Course;
 use App\Models\Discussion;
 use App\Models\Quiz;
 use App\Models\QuizResult;
@@ -43,6 +44,11 @@ class ClassroomController extends Controller
 
         }
         return view('dashboard.classroom.index', compact('classrooms','room'));
+    }
+
+    public function readFile(Course $course)
+    {
+        return view('dashboard.classroom.readFile');
     }
 
     public function create(Room $room)
