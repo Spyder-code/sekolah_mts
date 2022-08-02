@@ -48,7 +48,7 @@ class ClassroomController extends Controller
 
     public function readFile(Course $course)
     {
-        return view('dashboard.classroom.readFile');
+        return view('dashboard.classroom.readFile', compact('course'));
     }
 
     public function create(Room $room)
@@ -275,6 +275,18 @@ class ClassroomController extends Controller
         Attendance::find($attendance->id)->update($request->all());
         Session::flash('success', 'Absensi berhasil diubah!');
         return redirect()->back();
+    }
+
+    public function addPoint()
+    {
+        $user = User::find(request('user_id'));
+        $point = $user->point + 1;
+        $user->update([
+            'point' => $point
+        ]);
+        return response()->json([
+            'success' => 'Berhasil Menambah Point'
+        ]);
     }
 
 }

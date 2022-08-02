@@ -16,7 +16,7 @@ class CourseController extends Controller
             'title' => 'required|string',
             'description' => 'required|string',
             'classroom_id' => 'required|exists:classrooms,id',
-            'file' => 'required|mimes:pdf,docx,doc,pptx,ppt,xls,xlsx'
+            'file' => 'required|mimes:pdf'
         ]);
 
         $upload = new FileController();
