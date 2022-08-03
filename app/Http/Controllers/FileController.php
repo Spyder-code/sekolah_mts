@@ -30,7 +30,7 @@ class FileController extends Controller
             'mime' => $mime
         ]);
 
-        Storage::putFileAs($path, $file, $filename);
+        $file->storeAs('public/' . $path, $filename);
 
         return $uploadedFile->id;
 

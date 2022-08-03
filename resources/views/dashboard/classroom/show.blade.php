@@ -327,7 +327,7 @@
                         <div class="form-group">
                             <label for="file">Pilih File Dokumen</label>
                             <div class="custom-file text-left">
-                                <input type="file" name="file" class="custom-file-input" id="file"
+                                <input type="file" name="file" accept="application/pdf" class="custom-file-input" id="file"
                                        value="{{ old('file') }}">
                                 <label class="custom-file-label" for="file">Pilih File</label>
                             </div>
