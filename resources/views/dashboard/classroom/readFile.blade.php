@@ -61,9 +61,9 @@ href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
     }
 
     let i = 0;
-    let percentage = 0;
+    let percentage = 1;
     var time = setInterval(() => {
-        percentage = (percentage/180)*100;
+        percentage = Math.ceil((i/180)*100);
         updateProgress(percentage);
         i++;
         if (i==180) {

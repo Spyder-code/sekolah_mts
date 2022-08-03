@@ -9,6 +9,12 @@ use Illuminate\Support\Facades\Session;
 
 class PointController extends Controller
 {
+
+    public function index()
+    {
+        $points = Point::all()->where('user_id', auth()->user()->id);
+        return view('dashboard.point.index', compact('points'));
+    }
     public function store(Request $request)
     {
         $validated = $this->validate($request, [
@@ -26,7 +32,7 @@ class PointController extends Controller
                 'point' => $point
             ]);
         } else {
-            return back()->with('error', 'Anda sudah mendapatkan point');
+            return back()->with('success', 'Anda sudah mendapatkan point');
         }
         $point = Point::create($validated);
 

@@ -65,6 +65,11 @@
             <a href="{{ route('moneybox.siswa') }}"><i
                 class="icon icon-room_service s-18 text-purple"></i>Tabungan Saya</a>
             </li>
+            <li
+            class="{{ setActive(['point.index']) }}">
+            <a href="{{ route('point.index') }}"><i
+                class="icon icon-room_service s-18 text-purple"></i>Point Saya</a>
+            </li>
          @endcan
          @endif
          @can('admin')
