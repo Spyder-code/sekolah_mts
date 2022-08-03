@@ -47,7 +47,7 @@ href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfobject/2.2.8/pdfobject.min.js" integrity="sha512-MoP2OErV7Mtk4VL893VYBFq8yJHWQtqJxTyIAsCVKzILrvHyKQpAwJf9noILczN6psvXUxTr19T5h+ndywCoVw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script>
     $('#get-point').hide();
-    var file = @json(asset('storage/'.$course['files'][0]['filename']));
+    var file = @json(asset('storage/files/'.$course['files'][0]['filename']));
     if(PDFObject.supportsPDFs){
         PDFObject.embed(file, "#example1");
     } else {
