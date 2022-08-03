@@ -6,7 +6,7 @@
             <div class="row">
                 <div class="col-md-9">
                     <h3>Point</h3>
-                    <span>Point Saya</span>
+                    <span>Point Siswa</span>
                 </div>
             </div>
         </div>
@@ -15,25 +15,10 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="row">
-                    <div class="col-md-3">
-                        <div class="card shadow my-3 no-b">
-                            <div class="card-body bg-pattern">
-                                <h3 class="mb-1">Poin Saya</h3>
-                                <strong>Total : {{ Auth::user()->point }}</strong><br>
-                            </div>
-                            {{-- <div class="p-2 b-t">
-                                <span class="float-right">
-                                    <a href="{{ route('moneybox.siswa.detail',$item->first()->money_box_category->id) }}" class="btn btn-primary btn-sm">Lihat Detail</a>
-                                </span>
-                            </div> --}}
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
                     <div class="col-md-12">
                         <div class="card no-b my-3 shadow">
                             <div class="card-header white">
-                                <h6>Riwayat Point</h6>
+                                <h6>Point Siswa</h6>
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
@@ -41,18 +26,18 @@
                                         <thead>
                                         <tr>
                                             <th>No.</th>
-                                            <th>Keterangan</th>
-                                            <th>Jumlah Point</th>
+                                            <th>Nama Siswa</th>
+                                            <th>Jumlah</th>
                                             <th>Tanggal</th>
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        @foreach($points as $item)
+                                        @foreach($data as $item)
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
-                                                <td>Membaca Materi {{ $item->course->title }}</td>
-                                                <td>{{ $item->point }}</td>
-                                                <td>{{ date('d/m/Y', strtotime($item->created_at)) }}</td>
+                                                <td>{{ $item['user'] }}</td>
+                                                <td>{{ $item['point'] }}</td>
+                                                <td>{{ $item['tgl'] }}</td>
                                             </tr>
                                         @endforeach
                                         </tbody>

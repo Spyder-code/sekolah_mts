@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ClassStudent;
+use App\Models\Course;
 use App\Models\Point;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -37,5 +39,29 @@ class PointController extends Controller
         $point = Point::create($validated);
 
         return back()->with('success', 'Berhasil Mendapatkan Point');
+    }
+
+    public function check($id)
+    {
+        $course = Course::find($id);
+        $room = $course->classes->room_id;
+        $classroom = ClassStudent::where('room_id', $room)->pluck('user_id');
+        $users = User::whereIn('id', $classroom)->get();
+        $points = Point::all()->where('course_id', $id);
+        $data = array();
+        foreach ($users as $key => $item) {
+            $check = Point::where('course_id', $id)->where('user_id', $item->id)->first();
+            $point = 0;
+            $tgl = '-';
+            if ($check) {
+                $point = 1;
+                $tgl = date('d/m/Y H:i', strtotime($check->created_at));
+            }
+
+            $data[$key]['user'] = $item->name;
+            $data[$key]['point'] = $point;
+            $data[$key]['tgl'] = $tgl;
+        }
+        return view('dashboard.point.check', compact('data'));
     }
 }

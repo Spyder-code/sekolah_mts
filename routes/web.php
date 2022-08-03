@@ -81,6 +81,7 @@ Route::group(['middleware' => ['auth']], function () {
    Route::get('classroom', [ClassroomController::class,'index'])->name('classroom.index');
    Route::get('classroom/mapel/{classroom}/edit', [ClassroomController::class,'edit'])->name('classroom.edit');
    Route::get('classroom/create/room/{room}', [ClassroomController::class,'create'])->name('classroom.create');
+   Route::get('classroom/check/course-point/{id}', [PointController::class,'check'])->name('point.check');
    Route::resource('classroom', ClassroomController::class)->except(['index','create','edit']);
    Route::resource('point', PointController::class)->except(['create','edit']);
    Route::resource('moneyboxcategory', MoneyBoxCategoryController::class)->except(['create','edit']);

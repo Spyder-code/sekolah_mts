@@ -95,10 +95,10 @@
                                                             class="icon icon-open"></i> Baca</a>
                                                 </td>
                                                 @can('guru')
-                                                    <td><a href="#"
-                                                           onclick="deleteCourse('{{$course['id']}}', '{{ $course['title'] }}')"
-                                                           class="btn btn-danger btn-sm" title="Hapus"><i
-                                                                class="icon-trash"></i></a></td>
+                                                    <td>
+                                                        <a href="#" onclick="deleteCourse('{{$course['id']}}', '{{ $course['title'] }}')" class="btn btn-danger btn-sm" title="Hapus"><i class="icon-trash"></i></a>
+                                                        <a href="{{ route('point.check', $course['id']) }}" class="btn btn-primary btn-sm"><i class="icon icon-open"></i> Lihat Point Siswa</a>
+                                                    </td>
                                                 @endcan
                                             </tr>
                                         @endforeach
