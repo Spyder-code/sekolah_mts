@@ -5,8 +5,8 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="card no-b my-3 shadow">
-                    <div class="card-header white">
-                        <h6>Data {{ $name }}</h6>
+                    <div class="card-header bg-primary">
+                        <h6 class="text-white">Data {{ $name }}</h6>
                     </div>
                     <div class="card-body">
                         <div class="col-md-12 mb-4">
@@ -14,7 +14,7 @@
                                     class="icon icon-add"></i>Tambah {{ $name }}</a>
                         </div>
                         <div class="table-responsive">
-                            <table class="table table-bordered table-hover dataTable" id="data-table">
+                            <table class="table table-bordered table-hover dataTable table-striped" id="data-table">
                                 <thead>
                                 <tr>
                                     <th>Nama</th>

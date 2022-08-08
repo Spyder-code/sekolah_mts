@@ -32,8 +32,8 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="card no-b my-3 shadow">
-                            <div class="card-header white">
-                                <h6>Riwayat Point</h6>
+                            <div class="card-header bg-primary">
+                                <h6 class="text-white">Riwayat Point</h6>
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">

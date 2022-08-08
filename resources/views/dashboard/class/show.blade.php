@@ -5,8 +5,8 @@
         <div class="row">
             <div class="col-md-8 col-sm-12">
                 <div class="card no-b my-3 shadow">
-                    <div class="card-header white">
-                        <h6>Kelas {{ $room->name }}</h6>
+                    <div class="card-header bg-primary">
+                        <h6 class="text-white">Kelas {{ $room->name }}</h6>
                     </div>
                     <div class="card-body">
                         <div class="col-md-12 mb-4">
@@ -52,8 +52,8 @@
             <div class="col-md-4 col-sm-12">
                 <div class="card my-3">
                     <div class="card shadow no-b">
-                        <div class="card-header bg-white">
-                            <span class="card-title"><strong>Tambah Siswa</strong></span>
+                        <div class="card-header bg-success">
+                            <span class="card-title text-white"><strong>Tambah Siswa</strong></span>
                             {{-- <span class="float-right">
                                 <a href="{{ route('classroom.student', $classroom) }}">Lihat Semua</a>
                             </span> --}}
@@ -84,8 +84,8 @@
         <div class="row">
             <div class="col-12">
                 <div class="card no-b my-3 shadow">
-                    <div class="card-header white">
-                        <h6>Data siswa kelas {{ $room->name }}</h6>
+                    <div class="card-header bg-warning">
+                        <h6 class="text-white">Data siswa kelas {{ $room->name }}</h6>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">

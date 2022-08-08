@@ -42,8 +42,8 @@
                 <div class="row mb-4">
                     <div class="col-md-12">
                         <div class="card shadow no-b">
-                            <div class="card-header bg-white">
-                                <span class="card-title"><strong>Deskripsi</strong></span>
+                            <div class="card-header bg-info">
+                                <span class="card-title text-white"><strong>Deskripsi</strong></span>
                             </div>
                             <div class="card-body">
                                 {{ strip_tags($classroom['description']) }}
@@ -54,8 +54,8 @@
                 <div class="row mb-4">
                     <div class="col-md-12">
                         <div class="card shadow no-b">
-                            <div class="card-header bg-white">
-                                <strong>List Materi</strong>
+                            <div class="card-header bg-warning">
+                                <strong class="text-white">List Materi</strong>
                                 @can('guru')
                                     <span class="float-right">
                                     <a href="#" data-toggle="modal" data-target="#add_materi"
@@ -112,8 +112,8 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="card shadow no-b">
-                            <div class="card-header bg-white">
-                                <strong>List Quiz</strong>
+                            <div class="card-header bg-success">
+                                <strong class="text-white">List Quiz</strong>
                                 @can('guru')
                                     <span class="float-right">
                                     <a href="{{ route('quiz.create', $classroom) }}"
@@ -185,8 +185,8 @@
                         @if($url)
                             <div class="col-md-12 mb-4">
                                 <div class="card shadow no-b">
-                                    <div class="card-header bg-white">
-                                        <span class="card-title"><strong>Enroll URL Classroom</strong></span>
+                                    <div class="card-header bg-secondary">
+                                        <span class="card-title text-white"><strong>Enroll URL Classroom</strong></span>
                                     </div>
                                     <div class="card-body">
                                         <pre>{{ $url }}</pre>
@@ -196,8 +196,8 @@
                         @endif
                         <div class="col-md-12 mb-4">
                             <div class="card shadow no-b">
-                                <div class="card-header bg-white">
-                                    <span class="card-title"><strong>Absensi</strong></span>
+                                <div class="card-header bg-secondary">
+                                    <span class="card-title text-white"><strong>Absensi</strong></span>
                                     <span class="float-right">
                                         <a href="{{ route('classroom.students', $classroom) }}">Lihat Semua</a>
                                     </span>

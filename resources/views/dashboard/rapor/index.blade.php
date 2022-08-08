@@ -15,7 +15,7 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
-                        <h1 class="text-center">Laporan Hasil Belajar</h1>
+                        <h1 class="text-center text-primary">Laporan Hasil Belajar</h1>
                         <table class="table table-bordered">
                             <thead>
                                 <tr>

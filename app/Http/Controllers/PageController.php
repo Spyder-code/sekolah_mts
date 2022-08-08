@@ -175,8 +175,6 @@ class PageController extends Controller
 
    public function post(Request $request, $postname)
    {
-
-    dd($postname);
       switch ($postname) {
          case 'berita':
             $post = array();
@@ -210,7 +208,6 @@ class PageController extends Controller
             foreach ($pengumuman as $item) {
                $content = $this->cleanContent($item->content);
                $content = $this->trimContent($content, 150);
-               // dd($content);
                $item->content = $content;
                array_push($post, $item);
             }

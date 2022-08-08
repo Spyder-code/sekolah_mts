@@ -6,11 +6,11 @@
             <div class="row">
                 <div class="col-md-9">
                     @can('siswa')
-                        <h3>Kelas {{ $room->room->name }}</h3>
+                        <h3 class="text-primary">Kelas {{ $room->room->name }}</h3>
                         <span>Mata Pelajaran Yang Saya Ikuti</span>
                     @endcan
                     @can('guru')
-                        <h3>Daftar pelajaran yang saya ampu</h3>
+                        <h3 class="text-primary">Daftar pelajaran yang saya ampu</h3>
                         <span>Mata Pelajaran saya</span>
                     @endcan
                 </div>
@@ -24,8 +24,10 @@
                     @forelse($classrooms as $class)
                         <div class="col-md-3">
                             <div class="card shadow my-3 no-b">
+                                <div class="card-header bg-primary">
+                                    <h3 class="mb-1 text-white">{{ $class['name'] }}</h3>
+                                </div>
                                 <div class="card-body bg-pattern">
-                                    <h3 class="mb-1">{{ $class['name'] }}</h3>
                                     <div class="mt-2 mb-2">
                                         {{ strlen($class['description']) > 30 ?
                                         substr(strip_tags($class['description']), 0,30 ) . "..." : strip_tags($class['description']) }}

@@ -15,7 +15,7 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
-                        <h1 class="text-center">Ranking Kelas</h1>
+                        <h1 class="text-center text-primary">Ranking Kelas</h1>
                         <table class="table table-bordered">
                             <thead>
                                 <tr>

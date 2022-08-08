@@ -15,7 +15,7 @@ class ProfileController extends Controller
 {
     public function index($username)
     {
-        dd($this->ApiGET('categories'));
+        // dd($this->ApiGET('categories'));
 
         if (Auth::user()->username != $username) {
             return abort('404');
